@@ -4,12 +4,12 @@ using Dalamud.Interface.Internal;
 using Dalamud.Interface.Windowing;
 using ImGuiNET;
 
-namespace SamplePlugin.Windows;
+namespace QuesterPlugin.Windows;
 
 public class MainWindow : Window, IDisposable
 {
-    private IDalamudTextureWrap GoatImage;
-    private Plugin Plugin;
+    private IDalamudTextureWrap goatImage;
+    private Plugin plugin;
 
     public MainWindow(Plugin plugin, IDalamudTextureWrap goatImage) : base(
         "My Amazing Window", ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoScrollWithMouse)
@@ -20,29 +20,29 @@ public class MainWindow : Window, IDisposable
             MaximumSize = new Vector2(float.MaxValue, float.MaxValue)
         };
 
-        this.GoatImage = goatImage;
-        this.Plugin = plugin;
+        this.goatImage = goatImage;
+        this.plugin = plugin;
     }
 
     public void Dispose()
     {
-        this.GoatImage.Dispose();
+        this.goatImage.Dispose();
     }
 
     public override void Draw()
     {
-        ImGui.Text($"The random config bool is {this.Plugin.Configuration.SomePropertyToBeSavedAndWithADefault}");
+        ImGui.Text($"The random config bool is {this.plugin.Configuration.SomePropertyToBeSavedAndWithADefault}");
 
         if (ImGui.Button("Show Settings"))
         {
-            this.Plugin.DrawConfigUI();
+            this.plugin.DrawConfigUi();
         }
 
         ImGui.Spacing();
 
         ImGui.Text("Have a goat:");
         ImGui.Indent(55);
-        ImGui.Image(this.GoatImage.ImGuiHandle, new Vector2(this.GoatImage.Width, this.GoatImage.Height));
+        ImGui.Image(this.goatImage.ImGuiHandle, new Vector2(this.goatImage.Width, this.goatImage.Height));
         ImGui.Unindent(55);
     }
 }

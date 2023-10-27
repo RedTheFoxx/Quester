@@ -4,9 +4,9 @@ using Dalamud.Plugin;
 using System.IO;
 using Dalamud.Interface.Windowing;
 using Dalamud.Plugin.Services;
-using SamplePlugin.Windows;
+using QuesterPlugin.Windows;
 
-namespace SamplePlugin
+namespace QuesterPlugin
 {
     public sealed class Plugin : IDalamudPlugin
     {
@@ -16,7 +16,7 @@ namespace SamplePlugin
         private DalamudPluginInterface PluginInterface { get; init; }
         private ICommandManager CommandManager { get; init; }
         public Configuration Configuration { get; init; }
-        public WindowSystem WindowSystem = new("SamplePlugin");
+        public WindowSystem WindowSystem = new("QuesterPlugin");
 
         private ConfigWindow ConfigWindow { get; init; }
         private MainWindow MainWindow { get; init; }
@@ -46,8 +46,8 @@ namespace SamplePlugin
                 HelpMessage = "A useful message to display in /xlhelp"
             });
 
-            this.PluginInterface.UiBuilder.Draw += DrawUI;
-            this.PluginInterface.UiBuilder.OpenConfigUi += DrawConfigUI;
+            this.PluginInterface.UiBuilder.Draw += DrawUi;
+            this.PluginInterface.UiBuilder.OpenConfigUi += DrawConfigUi;
         }
 
         public void Dispose()
@@ -66,12 +66,12 @@ namespace SamplePlugin
             MainWindow.IsOpen = true;
         }
 
-        private void DrawUI()
+        private void DrawUi()
         {
             this.WindowSystem.Draw();
         }
 
-        public void DrawConfigUI()
+        public void DrawConfigUi()
         {
             ConfigWindow.IsOpen = true;
         }
