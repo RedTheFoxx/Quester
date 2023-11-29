@@ -33,6 +33,8 @@ public class MainWindow : Window, IDisposable
     {
         ImGui.Text($"The random config bool is {this.plugin.Configuration.SomePropertyToBeSavedAndWithADefault}");
 
+        ImGui.Text($"Current UTC Time is {DateTime.UtcNow}");
+
         if (ImGui.Button("Show Settings"))
         {
             this.plugin.DrawConfigUi();
